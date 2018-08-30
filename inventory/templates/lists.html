@@ -1,0 +1,11 @@
+<script>
+$(document).ready(function() {
+    var oTable = $('.datatable').dataTable({
+        // ...
+        "processing": true,
+        "serverSide": true,
+        "ajax": "{% url 'equipment_list' %}"
+    });
+    // ...
+});
+</script>

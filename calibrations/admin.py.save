@@ -1,0 +1,20 @@
+from django.contrib import admin
+ from django.contrib import admin
+from .models import Equipment
+class EquipmentAdmin(admin.ModelAdmin):
+    fields = (
+        ('Equipment_List', 'Inventory_Number'),
+        'Inventory_Tag',
+        'Manufacturer',
+        'Model_Number',
+        'Serial_Number',
+        'Condition_as_recieved',
+        'Calibration_Date',
+        'Due_Date',
+        'Calibration_Frequency',
+        'Days_To_Calibration',
+        'Current_Status',
+        'pdf'
+    )
+    readonly_fields = ('Due_Date','Inventory_Tag')
+admin.site.register(Equipment, EquipmentAdmin) # Register your models here.
