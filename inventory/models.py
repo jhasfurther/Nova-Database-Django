@@ -1,4 +1,3 @@
-4
 from django.db import models
 import datetime
 from dateutil.relativedelta import relativedelta
@@ -18,12 +17,12 @@ class Equipment (models.Model):
     Calibration_Frequency = models.IntegerField(help_text='months')
     Current_Status = models.CharField(max_length=200,default=None, choices=[('On Lease','On Lease'),('Missing','Missing'),('Need to be Repaired','Need to be Repaired'),('In Service','In Service'),('Out of Service','Out of Service')])
     Location_In_Lab = models.CharField(max_length=200,default=None)
-    pdf_1 = models.FileField(blank=True,default=None)
-    pdf_2 = models.FileField(blank=True,default=None)
-    pdf_3 = models.FileField(blank=True,default=None)
-    pdf_4 = models.FileField(blank=True,default=None)
-    pdf_5 = models.FileField(blank=True,default=None)
-    pdf_6 = models.FileField(blank=True,default=None)
+    pdf_of_introduction_to_inventory = models.FileField(blank=True,default=None)
+    pdf_of_calibration_1 = models.FileField(blank=True,default=None)
+    pdf_of_calibration_2 = models.FileField(blank=True,default=None)
+    pdf_of_calibration_3 = models.FileField(blank=True,default=None)
+    pdf_of_calibration_4 = models.FileField(blank=True,default=None)
+    pdf_of_calibration_5 = models.FileField(blank=True,default=None)
 
     def save(self, *args, **kwargs):
         self.Inventory_Tag = self.Equipment_List + '-' + str(self.Inventory_Number)

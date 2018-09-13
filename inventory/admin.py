@@ -15,12 +15,12 @@ class EquipmentAdmin(admin.ModelAdmin):
         'Due_Date',
         'Calibration_Frequency',
         'Current_Status',
-        'pdf_1',
-	'pdf_2',
-        'pdf_3',
-        'pdf_4',
-        'pdf_5',
-        'pdf_6',
+        'pdf_of_introduction_to_inventory',
+	'pdf_of_calibration_1',
+        'pdf_of_calibration_2',
+        'pdf_of_calibration_3',
+        'pdf_of_calibration_4',
+        'pdf_of_calibration_5',
 	'Location_In_Lab'
     )
     readonly_fields = ('Due_Date','Inventory_Tag')
