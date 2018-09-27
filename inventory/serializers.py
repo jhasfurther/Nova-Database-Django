@@ -13,3 +13,6 @@ class InventoryEquipmentSerializer(serializers.Serializer):
     Location_in_Lab = serializers.CharField()
     pdf_of_introduction_to_inventory = serializers.FileField()
     pdf_of_calibration_1 = serializers.FileField()
+
+    def create(self, validated_data):
+        return Equipment.objects.create(**validated_data)
