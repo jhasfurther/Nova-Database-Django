@@ -30,7 +30,6 @@ ALLOWED_HOSTS = ['35.197.21.160', '127.0.0.1']
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 MEDIA_URL = '/media/'
-#thisisatestcomment
 
 # Application definition
 
