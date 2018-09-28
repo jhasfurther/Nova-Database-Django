@@ -13,6 +13,6 @@ router = routers.DefaultRouter()
 router.register(r'inventory', views.EquipmentViewSet)
 
 urlpatterns = [
-    url('/api', include(router.urls)),
+    url('^api/', include(router.urls)),
     url('', views.index, name='inventory'),
 ]
