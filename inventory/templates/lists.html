@@ -1,43 +1,3 @@
-<!-- <!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>Rolling Stone Top 500 albums of all time</title>
-  <meta name="description" content="Rolling Stone magazine's 2012 list of 500 greatest albums of all time with genres.">
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.css">
-  <link rel="stylesheet" href="//cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">
-</head>
-
-<body>
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-12">
-        <table id="inventory" class="table table-striped table-bordered" style="width:100%" data-server-side="true" data-ajax="/api/?format=datatables">
-          <thead>
-            <tr>
-              <th data-data="id">ID</th>
-              <th data-data="Inventory_Tag">Inventory_Tag</th>
-              <th data-data="Calibration_Date">Calibration Date</th>
-            </tr>
-          </thead>
-        </table>
-      </div>
-    </div>
-  </div>
-  <script src="//code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-  <script src="//cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
-  <script>
-      $(document).ready(function() {
-          $('#inventory').DataTable();
-      });
-  </script>
-</body>
-</html> -->
-
-
-
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -58,7 +18,7 @@
               <th>Inventory Tag</th>
               <th>Calibration Date</th>
               <th>Due Date</th>
-              <!-- <th>Calibration Frequency</th> -->
+              <th>Calibration Frequency</th>
             </tr>
           </thead>
         </table>
@@ -76,9 +36,10 @@
             "type": "GET"
         },
         "columns": [
-            { "data": "id" },
             { "data": "Inventory_Tag" },
             { "data": "Calibration_Date" },
+            { "data": "Due_Date" },
+            { "data": "Calibration_Frequency" },
         ]
       });
   });
