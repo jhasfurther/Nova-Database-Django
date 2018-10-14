@@ -24,7 +24,7 @@ class Equipment (models.Model):
     pdf_of_calibration_3 = models.FileField(blank=True,default=None)
     pdf_of_calibration_4 = models.FileField(blank=True,default=None)
     pdf_of_calibration_5 = models.FileField(blank=True,default=None)
-    Who_Is_It_Assigned_To = models.FileField(blank=True,default=None)
+    Who_Is_It_Assigned_To = models.CharField(max_length=200,default=None)
 
     def save(self, *args, **kwargs):
         self.Inventory_Tag = self.Equipment_List + '-' + str(self.Inventory_Number)
