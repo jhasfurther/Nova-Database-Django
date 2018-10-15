@@ -21,16 +21,9 @@ class EquipmentAdmin(admin.ModelAdmin):
         'pdf_of_calibration_3',
         'pdf_of_calibration_4',
         'pdf_of_calibration_5',
-<<<<<<< HEAD
 	    'Location_In_Lab',
 	    'Who_Is_It_Assigned_To',
 	    'Calibrated_By',
-
-=======
-        'Location_In_Lab',
-        'Who_Is_It_Assigned_To',
-        'Calibrated_By',
->>>>>>> 1ca91a6258827f56494bc6b90ad8960a5e46e9f8
     )
     readonly_fields = ('Due_Date','Inventory_Tag')
 
