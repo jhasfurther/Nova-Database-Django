@@ -23,8 +23,6 @@ for row in reader:
                       # 'Date_assigned_to_inv': row[7],
                       'Calibration_Date': row[8][:-2] + '20' + row[8][-2:],
                       'Calibration_Frequency': row[9],
-                      # 'Due_Date': row[10],
-                      # 'Due_Date+-': row[11]
     })
 
 print(equipment[0])
