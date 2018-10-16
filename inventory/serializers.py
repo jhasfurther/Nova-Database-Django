@@ -5,14 +5,13 @@ from rest_framework import serializers
 
 class EquipmentSerializer(serializers.Serializer):
     id = serializers.IntegerField()
-    Inventory_Tag = serializers.CharField()
-    Calibration_Date = serializers.DateField()
-    Due_Date = serializers.DateField()
-    Calibration_Frequency = serializers.IntegerField()
-    Current_Status = serializers.CharField()
+    inventory_tag = serializers.CharField()
+    calibration_date = serializers.DateField()
+    due_date = serializers.DateField()
+    calibration_frequency = serializers.IntegerField()
+    status = serializers.CharField()
     # Location_in_Lab = serializers.CharField()
     pdf_of_introduction_to_inventory = serializers.FileField()
-    pdf_of_calibration_1 = serializers.FileField()
 
     def create(self, validated_data):
         return Equipment.objects.create(**validated_data)
