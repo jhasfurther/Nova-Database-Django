@@ -20,7 +20,6 @@ for row in reader:
                       'Serial_Number': row[4],
                       'Condition_as_recieved': row[5],
                       # 'Date_revievd': row[6],
-                      # 'Date_assigned_to_inv': row[7],
                       'Calibration_Date': row[8][:-2] + '20' + row[8][-2:],
                       'Calibration_Frequency': row[9],
     })
