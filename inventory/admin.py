@@ -1,9 +1,12 @@
 from django.contrib import admin
 
-from .models import Equipment
+from .models import Equipment, Calibration
+
+class CalibrationAdmin(admin.TabularInline):
+    model = Calibration
 
 class EquipmentAdmin(admin.ModelAdmin):
-    fields = (
+    fields = [
         ('equipment_type', 'inventory_number'),
         'inventory_tag',
         'manufacturer',
@@ -12,11 +15,14 @@ class EquipmentAdmin(admin.ModelAdmin):
         'condition_as_recieved',
         ('calibration_date', 'due_date', 'calibration_frequency'),
         'status',
-        'pdf_of_introduction_to_inventory',
+        'intro_pdf',
 	    'location',
 	    'assignee',
 	    'calibrated_by',
-    )
+    ]
     readonly_fields = ('due_date','inventory_tag')
+    inlines = [
+        CalibrationAdmin,
+    ]
 
 admin.site.register(Equipment, EquipmentAdmin)
