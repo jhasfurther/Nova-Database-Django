@@ -17,7 +17,8 @@ class Equipment (models.Model):
     )
     CONDITIONS = (
         ('New','New'),
-        ('Used','Used')
+        ('Used','Used'),
+        ('Good','Good'),
     )
     CALIBRATORS = (
         ('National', 'National'),
