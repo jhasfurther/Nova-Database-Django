@@ -20,11 +20,12 @@ for row in reader:
                       'Serial_Number': row[4],
                       'Condition_as_recieved': row[5],
                       # 'Date_revievd': row[6],
-                      'Calibration_Date': row[8][:-2] + '20' + row[8][-2:],
-                      'Calibration_Frequency': row[9],
+                      #'Calibration_Date': row[8][:-2] + '20' + row[8][-2:],
+                      'Calibration_Date' : row[6],
+                      'Calibration_Frequency': row[7],
     })
+    print(row[6])
 
-print(equipment[0])
 
 import os, django
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "nova_geotechnical.settings")
@@ -35,15 +36,16 @@ import datetime
 
 for item in equipment:
     added_item = Equipment()
-    added_item.Equipment_List = item['Equipment_Type'] # list convert
-    added_item.Inventory_Number = item['Inventory_Number']
-    added_item.Description_of_Item = item['Description_of_Item']
-    added_item.Manufacturer = item['Manufacturer']
-    added_item.Model_Number = item['Model_Number']
-    added_item.Serial_Number = item['Serial_Number']
-    added_item.Condition_as_recieved = item['Condition_as_recieved'] # list convert
-    added_item.Calibration_Date = datetime.datetime.strptime(item['Calibration_Date'], '%m/%d/%y') # to datetime?
-    added_item.Calibration_Frequency = int(item['Calibration_Frequency'])
+    added_item.equipment_type = item['Equipment_Type'] # list convert
+    added_item.inventory_number = item['Inventory_Number']
+    added_item.description = item['Description_of_Item']
+    added_item.manufacturer = item['Manufacturer']
+    added_item.model_number = item['Model_Number']
+    added_item.serial_number = item['Serial_Number']
+    added_item.condition_as_recieved = item['Condition_as_recieved'] # list convert
+    #added_item.Calibration_Date = datetime.datetime.strptime(item['Calibration_Date'], '%m/%d/%y') # to datetime?
+    added_item.calibration_date = item['Calibration_Date']
+    added_item.calibration_frequency = int(item['Calibration_Frequency'])
     # added_item.Due_Date = item['Due_Date'] # to datetime?
     added_item.save()
 
