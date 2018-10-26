@@ -45,7 +45,6 @@ INSTALLED_APPS = [
     'django_tables2',
     'import_export',
     'table',
-     'dbbackup',  # django-dbbackup
     'rest_framework_datatables',
     'rest_framework',
 ]
