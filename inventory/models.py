@@ -13,7 +13,6 @@ class Equipment (models.Model):
         ('Marshall Aaparatus','Marshall Aparatus'),
         ('Slump Set','Slump Set'),
         ('Slump set thermometer','Slump Set Thermometer')
-
     )
     CONDITIONS = (
         ('New','New'),
@@ -48,7 +47,7 @@ class Equipment (models.Model):
     calibrated_by = models.CharField(blank=True, null=True, max_length=200,default=None, choices=CALIBRATORS)
     status = models.CharField(blank=True, null=True, max_length=200,default=None, choices=STATUSES)
     location = models.CharField(blank=True, null=True, max_length=200,default=None)
-    pdf_of_introduction_to_inventory = models.FileField(blank=True, null=True, default=None)
+    intro_pdf = models.FileField(blank=True, null=True, default=None)
     assignee = models.CharField(blank=True, null=True, max_length=200,default=None)
 
     class Meta:
@@ -62,3 +61,12 @@ class Equipment (models.Model):
 
     def __str__(self):
         return self.inventory_tag
+
+class Calibration (models.Model):
+    equipment = models.ForeignKey(Equipment, on_delete=models.CASCADE)
+    date_calibrated = models.DateField()
+    pdf = models.FileField(blank=True, null=True, default=None)
+    calibrator = models.CharField(max_length=256, default=None)
+
+    def __str__(self):
+        return str(self.equipment.inventory_tag) + " - " + str(self.date_calibrated)
