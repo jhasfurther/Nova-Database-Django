@@ -33,8 +33,8 @@ class Equipment (models.Model):
         ('In Service','In Service'),
         ('Out of Service','Out of Service')
     )
-    equipment_type = models.CharField(max_length=256, default=None, choices=EQUIPMENT_TYPES)
     inventory_tag = models.CharField(default=None, max_length=20)
+    equipment_type = models.CharField(max_length=256, default=None, choices=EQUIPMENT_TYPES)
     inventory_number = models.CharField(max_length=200,default=None)
     description = models.CharField(default=None, max_length=200,blank=True,null=True)
     manufacturer =  models.CharField(max_length=200,default=None)
@@ -55,8 +55,12 @@ class Equipment (models.Model):
         unique_together = ('equipment_type', 'inventory_number')
 
     def save(self, *args, **kwargs):
-        self.inventory_tag = self.equipment_type + '-' + str(self.inventory_number)
-        if self.due_date:
+        if self.inventory_tag:
+            self.equipment_type = self.inventory_tag.split('-')[0]
+            self.inventory_number = self.inventory_tag.split('-')[1]
+        elif self.equipment_type and self.inventory_number:
+            self.inventory_tag = self.equipment_type + '-' + str(self.inventory_number)
+        if self.calibration_date and self.calibration_frequency:
             self.due_date = self.calibration_date + relativedelta(months=+self.calibration_frequency)
         super(Equipment, self).save(*args, **kwargs)
 
