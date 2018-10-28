@@ -36,7 +36,7 @@ MEDIA_URL = '/media/'
 INSTALLED_APPS = [
     'calibrations.apps.CalibrationsConfig',
     'inventory.apps.InventoryConfig',
-    # 'grappelli',
+    'grappelli',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
