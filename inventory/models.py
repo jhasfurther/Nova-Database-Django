@@ -33,8 +33,8 @@ class Equipment (models.Model):
         ('In Service','In Service'),
         ('Out of Service','Out of Service')
     )
-    equipment_type = models.CharField(max_length=256, default=None, choices=EQUIPMENT_TYPES)
     inventory_tag = models.CharField(default=None, max_length=20)
+    equipment_type = models.CharField(max_length=256, default=None, choices=EQUIPMENT_TYPES)
     inventory_number = models.CharField(max_length=200,default=None)
     description = models.CharField(default=None, max_length=200,blank=True,null=True)
     manufacturer =  models.CharField(max_length=200,default=None)
