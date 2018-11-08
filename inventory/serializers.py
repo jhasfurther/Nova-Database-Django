@@ -11,7 +11,7 @@ class EquipmentSerializer(serializers.Serializer):
     calibration_frequency = serializers.IntegerField()
     status = serializers.CharField()
     # Location_in_Lab = serializers.CharField()
-    intro_pdf = serializers.FileField()
+    intro_pdf = serializers.FileField(use_url=True)
 
     def create(self, validated_data):
         return Equipment.objects.create(**validated_data)

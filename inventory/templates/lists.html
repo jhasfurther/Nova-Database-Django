@@ -16,7 +16,7 @@
           <th>Calibration Date</th>
           <th>Due Date</th>
           <th>Calibration Frequency</th>
-          <th>PDF of Calibration</th>
+          <th>Introduction Into Service</th>
           <th>Current Status</th>
         </tr>
       </thead>
@@ -44,7 +44,11 @@
             { "data": "calibration_date" },
             { "data": "due_date" },
             { "data": "calibration_frequency" },
-            { "render": "intro_pdf" },
+            { "data": "intro_pdf"
+               render: function(data,type,row){
+                 return '<a href=' + data + ">PDF</a>"
+               }
+             },
             { "data": "status" },
         ]
       });
