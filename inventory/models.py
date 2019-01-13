@@ -3,31 +3,75 @@ import datetime
 from dateutil.relativedelta import relativedelta
 
 class Equipment (models.Model):
+    EQUIPMENT_TYPES = (
+        ('TL','Tool'),
+        ('BA','BA'),
+        ('SV','Sieve'),
+        ('CM','Compaction Mold'),
+        ('CS','Cleanness Sieve'),
+        ('SC','Soundness Sieve'),
+        ('MA','Marshall Aparatus'),
+        ('SS','Slump Set'),
+        ('SST','Slump Set Thermometer')
+    )
+    CONDITIONS = (
+        ('New','New'),
+        ('Used','Used'),
+        ('Good','Good'),
+    )
+    CALIBRATORS = (
+        ('National', 'National'),
+        ('ADTEK','ADTEK'),
+        ('In House', 'In House'),
+        ('Manufacturer','Manufacturer'),
+        ('Other','Other')
+    )
+    STATUSES = (
+        ('On Lease','On Lease'),
+        ('Missing','Missing'),
+        ('Need to be Repaired','Need to be Repaired'),
+        ('In Service','In Service'),
+        ('Out of Service','Out of Service')
+    )
+    inventory_tag = models.CharField(default=None, max_length=20)
+    equipment_type = models.CharField(max_length=256, default=None, choices=EQUIPMENT_TYPES)
+    inventory_number = models.CharField(max_length=200,default=None)
+    description = models.CharField(default=None, max_length=200,blank=True,null=True)
+    manufacturer =  models.CharField(max_length=200,default=None)
+    model_number = models.CharField(blank=True, null=True, max_length=200,default=None)
+    serial_number = models.CharField(blank=True, null=True, max_length=200,default=None)
+    condition_as_recieved = models.CharField(blank=True, null=True, max_length=10, default='New', choices=CONDITIONS)
+    calibration_date = models.DateField(null=True)
+    due_date = models.DateField(null=True)
+    calibration_frequency = models.IntegerField(blank=True, null=True, help_text='months')
+    calibrated_by = models.CharField(blank=True, null=True, max_length=200,default=None, choices=CALIBRATORS)
+    status = models.CharField(blank=True, null=True, max_length=200,default=None, choices=STATUSES)
+    location = models.CharField(blank=True, null=True, max_length=200,default=None)
+    intro_pdf = models.FileField(blank=True, null=True, default=None)
+    assignee = models.CharField(blank=True, null=True, max_length=200,default=None)
 
-    Equipment_List = models.CharField(max_length=256, default=None, choices=[('Tool','Tool'),('BA','BA'),('Sieve','Sieve'),('Compaction Mold','Compaction Mold'),('Cleanness Sieve','Cleanness Sieve'),('Soundness Sieve','Soundness Sieve'),('Marshall Aaparatus','Marshall Aparatus'),('Slump Set','Slump Set'),('Slump set thermometer','Slump Set Thermometer')])
-    Inventory_Tag = models.CharField(default=None, max_length=20,unique=True)
-    Description_of_Item = models.CharField(default=None, max_length=200,blank=True,null=True)
-    Inventory_Number = models.CharField(max_length=200,default=None)
-    Manufacturer =  models.CharField(max_length=200,default=None)
-    Model_Number = models.CharField(max_length=200,default=None)
-    Serial_Number = models.CharField(max_length=200,default=None)
-    Condition_as_recieved = models.CharField(max_length=10, default='New', null=True, choices=[('New','New'),('Used','Used')])
-    Calibration_Date = models.DateField()
-    Due_Date = models.DateField()
-    Calibration_Frequency = models.IntegerField(help_text='months')
-    Current_Status = models.CharField(max_length=200,default=None, choices=[('On Lease','On Lease'),('Missing','Missing'),('Need to be Repaired','Need to be Repaired'),('In Service','In Service'),('Out of Service','Out of Service')])
-    Location_In_Lab = models.CharField(max_length=200,default=None)
-    pdf_of_introduction_to_inventory = models.FileField(blank=True,default=None)
-    pdf_of_calibration_1 = models.FileField(blank=True,default=None)
-    pdf_of_calibration_2 = models.FileField(blank=True,default=None)
-    pdf_of_calibration_3 = models.FileField(blank=True,default=None)
-    pdf_of_calibration_4 = models.FileField(blank=True,default=None)
-    pdf_of_calibration_5 = models.FileField(blank=True,default=None)
+    class Meta:
+        verbose_name_plural = "Equipment"
+        unique_together = ('equipment_type', 'inventory_number')
 
     def save(self, *args, **kwargs):
-        self.Inventory_Tag = self.Equipment_List + '-' + str(self.Inventory_Number)
-        self.Due_Date = self.Calibration_Date + relativedelta(months=+self.Calibration_Frequency)
+        if self.inventory_tag:
+            self.equipment_type = self.inventory_tag.split('-')[0]
+            self.inventory_number = self.inventory_tag.split('-')[1]
+        elif self.equipment_type and self.inventory_number:
+            self.inventory_tag = self.equipment_type + '-' + str(self.inventory_number)
+        if self.calibration_date and self.calibration_frequency:
+            self.due_date = self.calibration_date + relativedelta(months=+self.calibration_frequency)
         super(Equipment, self).save(*args, **kwargs)
 
     def __str__(self):
-        return self.Equipment_List + '-' + str(self.Inventory_Number)
+        return self.inventory_tag
+
+class Calibration (models.Model):
+    equipment = models.ForeignKey(Equipment, on_delete=models.CASCADE)
+    date_calibrated = models.DateField()
+    pdf = models.FileField(blank=True, null=True, default=None)
+    calibrator = models.CharField(max_length=256, default=None)
+
+    def __str__(self):
+        return str(self.equipment.inventory_tag) + " - " + str(self.date_calibrated)

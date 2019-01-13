@@ -1,28 +1,52 @@
 from django.contrib import admin
+from import_export import resources
+from import_export.admin import ImportExportModelAdmin
+from import_export.fields import Field
+from .models import Equipment, Calibration
 
-from .models import Equipment
+class CalibrationAdmin(admin.TabularInline):
+    model = Calibration
 
-class EquipmentAdmin(admin.ModelAdmin):
-    fields = (
-        ('Equipment_List', 'Inventory_Number'),
-        'Inventory_Tag',
-        'Manufacturer',
-        'Description_of_Item',
-        'Model_Number',
-        'Serial_Number',
-        'Condition_as_recieved',
-        'Calibration_Date',
-        'Due_Date',
-        'Calibration_Frequency',
-        'Current_Status',
-        'pdf_of_introduction_to_inventory',
-	'pdf_of_calibration_1',
-        'pdf_of_calibration_2',
-        'pdf_of_calibration_3',
-        'pdf_of_calibration_4',
-        'pdf_of_calibration_5',
-	'Location_In_Lab'
-    )
-    readonly_fields = ('Due_Date','Inventory_Tag')
+class EquipmentAdmin(ImportExportModelAdmin):
+    fields = [
+        ('equipment_type', 'inventory_number'),
+        'inventory_tag',
+        'manufacturer',
+        'description',
+        ('model_number', 'serial_number'),
+        'condition_as_recieved',
+        ('calibration_date', 'due_date', 'calibration_frequency'),
+        'status',
+        'intro_pdf',
+	    'location',
+	    'assignee',
+	    'calibrated_by',
+    ]
+    readonly_fields = ('due_date','inventory_tag')
+    inlines = [
+        CalibrationAdmin,
+    ]
 
 admin.site.register(Equipment, EquipmentAdmin)
+
+class EquipmentResource(resources.ModelResource):
+
+    class Meta: 
+            model = Equipment
+            split_tag = Field()
+            def dehydrate_split_tag(self, equipment):
+                return '%s-%s' % (equipment.equipment_type, equipment.inventory_number)
+            fields = (  'inventory_tag',
+                        'manufacturer',
+                        'description',
+                        'model_number', 
+                        'serial_number',
+                        'condition_as_recieved',
+                        'calibration_date', 
+                        'due_date', 
+                        'calibration_frequency',
+                        'status',
+                        'location',
+                        'assignee',
+                        'calibrated_by',
+                    )

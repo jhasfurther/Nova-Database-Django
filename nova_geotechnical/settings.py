@@ -31,12 +31,12 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 MEDIA_URL = '/media/'
 
-
 # Application definition
 
 INSTALLED_APPS = [
     'calibrations.apps.CalibrationsConfig',
     'inventory.apps.InventoryConfig',
+    'grappelli',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -46,7 +46,6 @@ INSTALLED_APPS = [
     'django_tables2',
     'import_export',
     'table',
-     'dbbackup',  # django-dbbackup
     'rest_framework_datatables',
     'rest_framework',
 ]
@@ -135,7 +134,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = '/srv/nova_geotechnical/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+
+GRAPPELLI_ADMIN_TITLE = "Nova Geotechnical Inventory"
 
 IMPORT_EXPORT_USE_TRANSACTIONS = True
 
