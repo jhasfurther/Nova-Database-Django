@@ -5,12 +5,13 @@ from .serializers import EquipmentSerializer
 from django.http import HttpResponse
 
 def index(request):
-    return render(request, 'lists.html')
+	return render(request, 'lists.html')
 
 class EquipmentViewSet(viewsets.ModelViewSet):
-    queryset = Equipment.objects.all()
-    serializer_class = EquipmentSerializer
+	serializer_class = EquipmentSerializer
+	queryset = Equipment.objects.all()
 
-    def list(self, request):
-        serializer = self.serializer_class(self.queryset, many=True)
-        return response.Response(serializer.data)
+	def list(self, request):
+		self.queryset = Equipment.objects.all()
+		serializer = self.serializer_class(self.queryset, many=True)
+		return response.Response(serializer.data)
