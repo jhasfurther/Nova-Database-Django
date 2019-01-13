@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_tables2',
     'import_export',
-    'table',
+#    'table',
     'rest_framework_datatables',
     'rest_framework',
 ]
