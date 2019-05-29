@@ -117,12 +117,8 @@ else:
     # See https://cloud.google.com/sql/docs/mysql-connect-proxy
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            'HOST': '127.0.0.1',
-            'PORT': '3306',
-            'NAME': 'polls',
-            'USER': 'django-user',
-            'PASSWORD': 'password',
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': 'local_database',
         }
     }
 # [END db_setup]
