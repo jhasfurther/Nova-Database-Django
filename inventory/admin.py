@@ -8,6 +8,7 @@ class CalibrationAdmin(admin.TabularInline):
     model = Calibration
 
 class EquipmentAdmin(ImportExportModelAdmin):
+    list_display = ('inventory_tag', 'equipment_type', 'inventory_number', 'status', 'manufacturer', 'description')
     fields = [
         ('equipment_type', 'inventory_number'),
         'inventory_tag',
