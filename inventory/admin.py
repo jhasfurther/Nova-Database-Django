@@ -8,7 +8,7 @@ class CalibrationAdmin(admin.TabularInline):
     model = Calibration
 
 class EquipmentAdmin(ImportExportModelAdmin):
-    list_display = ('inventory_tag', 'equipment_type', 'inventory_number', 'status', 'manufacturer', 'description')
+    list_display = ('inventory_tag', 'equipment_type', 'inventory_number', 'status', 'manufacturer', 'description','assignee')
     fields = [
         ('equipment_type', 'inventory_number'),
         'inventory_tag',
@@ -32,7 +32,7 @@ admin.site.register(Equipment, EquipmentAdmin)
 
 class EquipmentResource(resources.ModelResource):
 
-    class Meta: 
+    class Meta:
             model = Equipment
             split_tag = Field()
             def dehydrate_split_tag(self, equipment):
@@ -40,11 +40,11 @@ class EquipmentResource(resources.ModelResource):
             fields = (  'inventory_tag',
                         'manufacturer',
                         'description',
-                        'model_number', 
+                        'model_number',
                         'serial_number',
                         'condition_as_recieved',
-                        'calibration_date', 
-                        'due_date', 
+                        'calibration_date',
+                        'due_date',
                         'calibration_frequency',
                         'status',
                         'location',
