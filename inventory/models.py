@@ -12,7 +12,8 @@ class Equipment (models.Model):
         ('SC','Soundness Sieve'),
         ('MA','Marshall Aparatus'),
         ('SS','Slump Set'),
-        ('SST','Slump Set Thermometer')
+        ('SST','Slump Set Thermometer'),
+        ('DI', 'Dial Indicator')
     )
     CONDITIONS = (
         ('New','New'),
@@ -37,12 +38,12 @@ class Equipment (models.Model):
     equipment_type = models.CharField(max_length=256, default=None, choices=EQUIPMENT_TYPES)
     inventory_number = models.CharField(max_length=200,default=None)
     description = models.CharField(default=None, max_length=200,blank=True,null=True)
-    manufacturer =  models.CharField(max_length=200,default=None)
+    manufacturer =  models.CharField(blank=True, max_length=200,default=None)
     model_number = models.CharField(blank=True, null=True, max_length=200,default=None)
     serial_number = models.CharField(blank=True, null=True, max_length=200,default=None)
     condition_as_recieved = models.CharField(blank=True, null=True, max_length=10, default='New', choices=CONDITIONS)
-    calibration_date = models.DateField(null=True)
-    due_date = models.DateField(null=True)
+    calibration_date = models.DateField(blank=True, null=True)
+    due_date = models.DateField(blank=True, null=True)
     calibration_frequency = models.IntegerField(blank=True, null=True, help_text='months')
     calibrated_by = models.CharField(blank=True, null=True, max_length=200,default=None, choices=CALIBRATORS)
     status = models.CharField(blank=True, null=True, max_length=200,default=None, choices=STATUSES)
