@@ -5,7 +5,7 @@ from dateutil.relativedelta import relativedelta
 class Equipment (models.Model):
     EQUIPMENT_TYPES = (
         ('TL','Tool'),
-        ('BA','BA'),
+        ('BA','Balance and Sieve'),
         ('SV','Sieve'),
         ('CM','Compaction Mold'),
         ('CS','Cleanness Sieve'),
