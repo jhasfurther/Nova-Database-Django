@@ -5,7 +5,7 @@ from dateutil.relativedelta import relativedelta
 class Equipment (models.Model):
     EQUIPMENT_TYPES = (
         ('TL','Tool'),
-        ('BA','Balance and Sieve'),
+        ('BA','Balance and Scales'),
         ('SV','Sieve'),
         ('CM','Compaction Mold'),
         ('CS','Cleanness Sieve'),
@@ -13,7 +13,12 @@ class Equipment (models.Model):
         ('MA','Marshall Aparatus'),
         ('SS','Slump Set'),
         ('SST','Slump Set Thermometer'),
-        ('DI', 'Dial Indicator')
+        ('DI', 'Dial Indicator'),
+        ('NDTC', 'Non Destructive Testing (Concrete)'),
+        ('NDTSO', 'Non Destructive Testing (Soils)'),
+        ('NDTE', 'Non Destructive Testing (Environmental)'),
+        ('NDTFP', 'Non Destructive Testing (Fireproofing)'),
+        ('NDTST', 'Non Destructive Testing (Steel)'),
     )
     CONDITIONS = (
         ('New','New'),
