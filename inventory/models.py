@@ -10,7 +10,7 @@ class Equipment (models.Model):
         ('CM','Compaction Mold'),
         ('CS','Cleanness Sieve'),
         ('SC','Soundness Sieve'),
-        ('MA','Marshall Aparatus'),
+        ('MA','Machine'),
         ('SS','Slump Set'),
         ('SST','Slump Set Thermometer'),
         ('DI', 'Dial Indicator'),
