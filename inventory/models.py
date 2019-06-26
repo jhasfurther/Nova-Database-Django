@@ -53,7 +53,8 @@ class Equipment (models.Model):
     calibrated_by = models.CharField(blank=True, null=True, max_length=200,default=None, choices=CALIBRATORS)
     status = models.CharField(blank=True, null=True, max_length=200,default=None, choices=STATUSES)
     location = models.CharField(blank=True, null=True, max_length=200,default=None)
-    intro_pdf = models.FileField(blank=True, null=True, default=None)
+    introduction_to_service_form = models.FileField(blank=True, null=True, default=None)
+    out_of_service_form = models.FileField(blank=True, null=True, default=None)
     assignee = models.CharField(blank=True, null=True, max_length=200,default=None)
 
     class Meta:
