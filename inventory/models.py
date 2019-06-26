@@ -14,12 +14,8 @@ class Equipment (models.Model):
         ('SS','Slump Set'),
         ('SST','Slump Set Thermometer'),
         ('DI', 'Dial Indicator'),
-        ('NDTC', 'Non Destructive Testing (Concrete)'),
-        ('NDTSO', 'Non Destructive Testing (Soils)'),
-        ('NDTE', 'Non Destructive Testing (Environmental)'),
-        ('NDTFP', 'Non Destructive Testing (Fireproofing)'),
-        ('NDTST', 'Non Destructive Testing (Steel)'),
-    )
+        ('NDT', 'Non Destructive Testing'),
+)
     CONDITIONS = (
         ('New','New'),
         ('Used','Used'),
