@@ -74,3 +74,4 @@ class EquipmentResource(resources.ModelResource):
                         'assignee',
                         'calibrated_by',
                     )
+admin.site.site_url = "/inventory"
