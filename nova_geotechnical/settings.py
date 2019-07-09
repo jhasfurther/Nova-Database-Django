@@ -48,6 +48,7 @@ INSTALLED_APPS = [
 #    'table',
     'rest_framework_datatables',
     'rest_framework',
+    'rangefilter',
 ]
 
 DBBACKUP_STORAGE = 'dbbackup.storage.filesystem_storage'

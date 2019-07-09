@@ -3,6 +3,7 @@ from import_export import resources
 from import_export.admin import ImportExportModelAdmin
 from import_export.fields import Field
 from .models import Equipment, Calibration
+from rangefilter.filter import DateRangeFilter, DateTimeRangeFilter
 
 class CalibrationAdmin(admin.TabularInline):
     model = Calibration
@@ -33,7 +34,7 @@ class EquipmentAdmin(ImportExportModelAdmin):
 
     list_filter = (
     'equipment_type',
-    'due_date',
+    ('due_date', DateRangeFilter),
     'status',
     'calibrated_by',
     )
