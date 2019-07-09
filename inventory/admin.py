@@ -32,9 +32,10 @@ class EquipmentAdmin(ImportExportModelAdmin):
     'due_date')
 
     list_filter = (
-    'calibration_date',
     'equipment_type',
     'due_date',
+    'status',
+    'calibrated_by',
     )
     fields = [
         ('equipment_type', 'inventory_number'),
