@@ -3,6 +3,13 @@ import datetime
 from dateutil.relativedelta import relativedelta
 
 class Equipment (models.Model):
+
+    Office_choices = (
+    ('NOVA Reno','NOVA Reno'),
+    ('NOVA Las Vegas','NOVA Las Vegas'),
+    ('NOVA SoCal','NOVA SoCal'),
+)
+
     EQUIPMENT_TYPES = (
         ('TL','Tool'),
         ('BA','Balance and Scales'),
@@ -33,11 +40,12 @@ class Equipment (models.Model):
         ('Missing','Missing'),
         ('Need to be Repaired','Need to be Repaired'),
         ('In Service','In Service'),
-        ('Out of Service','Out of Service')
+        ('Out of Service','Out of Service'),
     )
     inventory_tag = models.CharField(default=None, max_length=20)
     equipment_type = models.CharField(max_length=256, default=None, choices=EQUIPMENT_TYPES)
     inventory_number = models.CharField(max_length=200,default=None)
+    Office = models.CharField(default=None,max_length=20, choices=Office_choices)
     description = models.CharField(default=None, max_length=200,blank=True,null=True)
     manufacturer =  models.CharField(blank=True, max_length=200,default=None)
     model_number = models.CharField(blank=True, null=True, max_length=200,default=None)

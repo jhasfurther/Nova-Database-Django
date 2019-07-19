@@ -19,8 +19,9 @@ class EquipmentAdmin(ImportExportModelAdmin):
     'due_date',
     'calibrated_by',
     'location',
-    'calibration_frequency'
-    )
+    'calibration_frequency',
+    'Office',
+)
 
     search_fields = ('inventory_tag',
     'equipment_type',
@@ -37,10 +38,12 @@ class EquipmentAdmin(ImportExportModelAdmin):
     ('due_date', DateRangeFilter),
     'status',
     'calibrated_by',
-    )
+    'Office',
+)
     fields = [
         ('equipment_type', 'inventory_number'),
         'inventory_tag',
+        'Office',
         'manufacturer',
         'description',
         ('model_number', 'serial_number'),
@@ -80,5 +83,6 @@ class EquipmentResource(resources.ModelResource):
                         'location',
                         'assignee',
                         'calibrated_by',
+                        'Office',
                     )
 admin.site.site_url = "/inventory"
