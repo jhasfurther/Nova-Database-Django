@@ -43,6 +43,7 @@ class EquipmentAdmin(ImportExportModelAdmin):
     fields = [
         ('equipment_type', 'inventory_number'),
         'inventory_tag',
+        'Office',
         'manufacturer',
         'description',
         ('model_number', 'serial_number'),
@@ -82,5 +83,6 @@ class EquipmentResource(resources.ModelResource):
                         'location',
                         'assignee',
                         'calibrated_by',
+                        'Office',
                     )
 admin.site.site_url = "/inventory"
