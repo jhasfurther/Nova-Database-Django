@@ -20,6 +20,7 @@ class EquipmentAdmin(ImportExportModelAdmin):
     'calibrated_by',
     'location',
     'calibration_frequency',
+    'Office',
 )
 
     search_fields = ('inventory_tag',
@@ -37,6 +38,7 @@ class EquipmentAdmin(ImportExportModelAdmin):
     ('due_date', DateRangeFilter),
     'status',
     'calibrated_by',
+    'Office',
 )
     fields = [
         ('equipment_type', 'inventory_number'),
