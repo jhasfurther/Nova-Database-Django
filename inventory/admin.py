@@ -30,7 +30,8 @@ class EquipmentAdmin(ImportExportModelAdmin):
     'description',
     'assignee',
     'calibration_date',
-    'due_date')
+    'due_date',
+)
 
     list_filter = (
     'equipment_type',
@@ -52,6 +53,7 @@ class EquipmentAdmin(ImportExportModelAdmin):
 	    'location',
 	    'assignee',
 	    'calibrated_by',
+        'Office_Location'
     ]
     readonly_fields = ('due_date','inventory_tag')
     inlines = [
