@@ -49,7 +49,7 @@ class Equipment (models.Model):
     description = models.CharField(default=None, max_length=200, blank=True, null=True)
     manufacturer =  models.CharField(blank=True, max_length=200, default=None)
     model_number = models.CharField(blank=True, null=True, max_length=200, default=None)
-    serial_number = models.CharField(blank=True, null=True, max_length=200, efault=None)
+    serial_number = models.CharField(blank=True, null=True, max_length=200, default=None)
     condition_as_recieved = models.CharField(blank=True, null=True, max_length=10, default='New', choices=CONDITIONS)
     calibration_date = models.DateField(blank=True, null=True)
     due_date = models.DateField(blank=True, null=True)
