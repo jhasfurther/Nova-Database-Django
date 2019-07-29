@@ -8,6 +8,7 @@ class Equipment (models.Model):
     ('NOVA Reno','NOVA Reno'),
     ('NOVA Las Vegas','NOVA Las Vegas'),
     ('NOVA SoCal','NOVA SoCal'),
+    ('Mobile Lab', 'Mobile Lab'),
 )
 
     EQUIPMENT_TYPES = (
@@ -45,7 +46,10 @@ class Equipment (models.Model):
     inventory_tag = models.CharField(default=None, max_length=20)
     equipment_type = models.CharField(max_length=256, default=None, choices=EQUIPMENT_TYPES)
     inventory_number = models.CharField(max_length=200,default=None)
-    Office_Location = models.CharField(max_length=20, null=True, default='NOVA Las Vegas', choices=OFFICE_CHOICES)
+    #Took a lazy way to add the default 'Nova Las Vegas' to all the current items in the inventory. Had to delete this Office_Location and add
+    #"Which Office" instead of reverting migrations
+    #Office_Location = models.CharField(max_length=20, null=True, default='NOVA Las Vegas', choices=OFFICE_CHOICES)
+    Location_of_Office = models.CharField(max_length=20, null=True, default='NOVA Las Vegas', choices=OFFICE_CHOICES)
     description = models.CharField(default=None, max_length=200, blank=True, null=True)
     manufacturer =  models.CharField(blank=True, max_length=200, default=None)
     model_number = models.CharField(blank=True, null=True, max_length=200, default=None)
@@ -54,8 +58,8 @@ class Equipment (models.Model):
     calibration_date = models.DateField(blank=True, null=True)
     due_date = models.DateField(blank=True, null=True)
     calibration_frequency = models.IntegerField(blank=True, null=True, help_text='months')
-    calibrated_by = models.CharField(blank=True, null=True, max_length=200,default=None, choices=CALIBRATORS)
-    status = models.CharField(blank=True, null=True, max_length=200,default=None, choices=STATUSES)
+    calibrated_by = models.CharField(blank=True, null=True, max_length=200,default=None, choices = CALIBRATORS)
+    status = models.CharField(blank=True, null=True, max_length=200,default=None, choices = STATUSES)
     location = models.CharField(blank=True, null=True, max_length=200,default=None)
     introduction_to_service_form = models.FileField(blank=True, null=True, default=None)
     out_of_service_form = models.FileField(blank=True, null=True, default=None)
