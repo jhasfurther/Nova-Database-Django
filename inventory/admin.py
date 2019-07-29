@@ -20,6 +20,7 @@ class EquipmentAdmin(ImportExportModelAdmin):
     'calibrated_by',
     'location',
     'calibration_frequency',
+    'Location_of_Office',
 )
 
     search_fields = ('inventory_tag',
@@ -32,12 +33,13 @@ class EquipmentAdmin(ImportExportModelAdmin):
     'calibration_date',
     'due_date',
 )
-
+#daterangefilter is an addon that makes it so you can filter by a date range instead of specific dates
     list_filter = (
     'equipment_type',
     ('due_date', DateRangeFilter),
     'status',
     'calibrated_by',
+    'Location_of_Office',
 )
     fields = [
         ('equipment_type', 'inventory_number'),
