@@ -55,7 +55,6 @@ class EquipmentAdmin(ImportExportModelAdmin):
 	    'location',
 	    'assignee',
 	    'calibrated_by',
-        #'Office_Location'
         'Location_of_Office',
     ]
     readonly_fields = ('due_date','inventory_tag')

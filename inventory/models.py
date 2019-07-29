@@ -46,9 +46,6 @@ class Equipment (models.Model):
     inventory_tag = models.CharField(default=None, max_length=20)
     equipment_type = models.CharField(max_length=256, default=None, choices=EQUIPMENT_TYPES)
     inventory_number = models.CharField(max_length=200,default=None)
-    #Took a lazy way to add the default 'Nova Las Vegas' to all the current items in the inventory. Had to delete this Office_Location and add
-    #"Which Office" instead of reverting migrations
-    #Office_Location = models.CharField(max_length=20, null=True, default='NOVA Las Vegas', choices=OFFICE_CHOICES)
     Location_of_Office = models.CharField(max_length=20, null=True, default='NOVA Las Vegas', choices=OFFICE_CHOICES)
     description = models.CharField(default=None, max_length=200, blank=True, null=True)
     manufacturer =  models.CharField(blank=True, max_length=200, default=None)
