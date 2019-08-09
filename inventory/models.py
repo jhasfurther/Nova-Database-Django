@@ -5,10 +5,10 @@ from dateutil.relativedelta import relativedelta
 class Equipment (models.Model):
 
     OFFICE_CHOICES = (
-    ('NOVA Reno','NOVA Reno'),
-    ('NOVA Las Vegas','NOVA Las Vegas'),
-    ('NOVA SoCal','NOVA SoCal'),
-    ('Mobile Lab', 'Mobile Lab'),
+    ('RN','NOVA Reno'),
+    ('LV','NOVA Las Vegas'),
+    ('SC','NOVA SoCal'),
+    ('ML', 'Mobile Lab'),
 )
 
     EQUIPMENT_TYPES = (
@@ -28,21 +28,21 @@ class Equipment (models.Model):
         ('New','New'),
         ('Used','Used'),
         ('Good','Good'),
-    )
+)
     CALIBRATORS = (
         ('National', 'National'),
         ('ADTEK','ADTEK'),
         ('In House', 'In House'),
         ('Manufacturer','Manufacturer'),
         ('Other','Other')
-    )
+)
     STATUSES = (
         ('On Lease','On Lease'),
         ('Missing','Missing'),
         ('Need to be Repaired','Need to be Repaired'),
         ('In Service','In Service'),
         ('Out of Service','Out of Service'),
-    )
+)
     inventory_tag = models.CharField(default=None, max_length=20)
     equipment_type = models.CharField(max_length=256, default=None, choices=EQUIPMENT_TYPES)
     inventory_number = models.CharField(max_length=200,default=None)
@@ -67,11 +67,15 @@ class Equipment (models.Model):
         unique_together = ('equipment_type', 'inventory_number')
 
     def save(self, *args, **kwargs):
-        if self.inventory_tag:
-            self.equipment_type = self.inventory_tag.split('-')[0]
-            self.inventory_number = self.inventory_tag.split('-')[1]
-        elif self.equipment_type and self.inventory_number:
-            self.inventory_tag = self.equipment_type + '-' + str(self.inventory_number)
+        try:
+            self.inventory_tag = self.Location_of_Office + '-' + self.equipment_type + '-' + str(self.inventory_number)
+        except:
+            print("UH OH WE HAVE A PROBLEM")
+        #if self.inventory_tag:
+        #    self.equipment_type = self.inventory_tag.split('-')[0]
+        #    self.inventory_number = self.inventory_tag.split('-')[1]
+        #elif self.equipment_type and self.inventory_number:
+        #    self.inventory_tag = self.equipment_type + '-' + str(self.inventory_number)
         if self.calibration_date and self.calibration_frequency:
             self.due_date = self.calibration_date + relativedelta(months=+self.calibration_frequency)
         super(Equipment, self).save(*args, **kwargs)
