@@ -42,7 +42,7 @@ class EquipmentAdmin(ImportExportModelAdmin):
     'Location_of_Office',
 )
     fields = [
-        ('equipment_type', 'inventory_number'),
+        ('Location_of_Office','equipment_type', 'inventory_number'),
         'inventory_tag',
         'manufacturer',
         'description',
@@ -55,7 +55,6 @@ class EquipmentAdmin(ImportExportModelAdmin):
 	    'location',
 	    'assignee',
 	    'calibrated_by',
-        'Location_of_Office',
     ]
     readonly_fields = ('due_date','inventory_tag')
     inlines = [
@@ -85,4 +84,5 @@ class EquipmentResource(resources.ModelResource):
                         'assignee',
                         'calibrated_by',
                     )
+#this just points the view website button to the front
 admin.site.site_url = "/inventory"
