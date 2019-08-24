@@ -46,7 +46,7 @@ class Equipment (models.Model):
     inventory_tag = models.CharField(default=None, max_length=20)
     equipment_type = models.CharField(max_length=256, default=None, choices=EQUIPMENT_TYPES)
     inventory_number = models.CharField(max_length=200,default=None)
-    Location_of_Office = models.CharField(max_length=20, null=True, default='NOVA Las Vegas', choices=OFFICE_CHOICES)
+    Location_of_Office = models.CharField(max_length=20, null=True, default='NOVA Las Vegas', choices = OFFICE_CHOICES)
     description = models.CharField(default=None, max_length=200, blank=True, null=True)
     manufacturer =  models.CharField(blank=True, max_length=200, default=None)
     model_number = models.CharField(blank=True, null=True, max_length=200, default=None)
@@ -64,7 +64,7 @@ class Equipment (models.Model):
 
     class Meta:
         verbose_name_plural = "Equipment"
-        unique_together = ('equipment_type', 'inventory_number')
+        unique_together = ('Location_of_Office', 'equipment_type', 'inventory_number')
 
     def save(self, *args, **kwargs):
         try:
