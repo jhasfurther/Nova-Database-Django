@@ -55,12 +55,13 @@ class EquipmentAdmin(ImportExportModelAdmin):
 	    'location',
 	    'assignee',
 	    'calibrated_by',
+        'notes'
     ]
     readonly_fields = ('due_date','inventory_tag')
     inlines = [
         CalibrationAdmin,
     ]
-
+    
 admin.site.register(Equipment, EquipmentAdmin)
 
 class EquipmentResource(resources.ModelResource):
