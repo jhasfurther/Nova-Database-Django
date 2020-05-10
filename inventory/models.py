@@ -34,6 +34,7 @@ class Equipment (models.Model):
         ('ADTEK','ADTEK'),
         ('In House', 'In House'),
         ('Manufacturer','Manufacturer'),
+        ('N/A','N/A'),
         ('Other','Other')
 )
     STATUSES = (
@@ -42,11 +43,12 @@ class Equipment (models.Model):
         ('Need to be Repaired','Need to be Repaired'),
         ('In Service','In Service'),
         ('Out of Service','Out of Service'),
+        ('Removed from Inventory', 'Removed from Inventory'),
 )
     inventory_tag = models.CharField(default=None, max_length=20, help_text ='Automatically Generated')
     equipment_type = models.CharField(max_length=256, default=None, choices=EQUIPMENT_TYPES,help_text ='*REQUIRED')
     inventory_number = models.CharField(max_length=200,default=None, help_text ='*REQUIRED')
-    Location_of_Office = models.CharField(max_length=20, null=True, default='NOVA Las Vegas', choices = OFFICE_CHOICES, help_text ='*REQUIRED')
+    Location_of_Office = models.CharField(max_length=20, null=True, choices = OFFICE_CHOICES, default='LV', help_text ='*REQUIRED')
     description = models.CharField(default=None, max_length=200, blank=True, null=True)
     manufacturer =  models.CharField(blank=True, max_length=200, default=None)
     model_number = models.CharField(blank=True, null=True, max_length=200, default=None)
@@ -55,8 +57,8 @@ class Equipment (models.Model):
     calibration_date = models.DateField(blank=True, null=True)
     due_date = models.DateField(blank=True, null=True)
     calibration_frequency = models.IntegerField(blank=True, null=True, help_text='months')
-    calibrated_by = models.CharField(blank=True, null=True, max_length=200,default=None, choices = CALIBRATORS)
-    status = models.CharField(blank=True, null=True, max_length=200,default=None, choices = STATUSES)
+    calibrated_by = models.CharField(null=True, max_length=200,default='In House', choices = CALIBRATORS)
+    status = models.CharField(null=True, max_length=200,default='In Service', choices = STATUSES)
     location = models.CharField(blank=True, null=True, max_length=200,default=None)
     introduction_to_service_form = models.FileField(blank=True, null=True, default=None)
     out_of_service_form = models.FileField(blank=True, null=True, default=None)
@@ -72,11 +74,6 @@ class Equipment (models.Model):
             self.inventory_tag = self.Location_of_Office + '-' + self.equipment_type + '-' + str(self.inventory_number)
         except:
             print("UH OH WE HAVE A PROBLEM")
-        #if self.inventory_tag:
-        #    self.equipment_type = self.inventory_tag.split('-')[0]
-        #    self.inventory_number = self.inventory_tag.split('-')[1]
-        #elif self.equipment_type and self.inventory_number:
-        #    self.inventory_tag = self.equipment_type + '-' + str(self.inventory_number)
         if self.calibration_date and self.calibration_frequency:
             self.due_date = self.calibration_date + relativedelta(months=+self.calibration_frequency)
         super(Equipment, self).save(*args, **kwargs)
