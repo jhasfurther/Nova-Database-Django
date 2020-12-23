@@ -24,7 +24,8 @@ class EquipmentAdmin(ImportExportModelAdmin):
     'model_number',
     'serial_number',
     'manufacturer',
-
+    'date_equipment_recieved',
+    'date_equipment_placed_in_service',
 )
 
     search_fields = ('inventory_tag',
@@ -56,6 +57,7 @@ class EquipmentAdmin(ImportExportModelAdmin):
         ('model_number', 'serial_number'),
         'condition_as_recieved',
         ('calibration_date', 'due_date', 'calibration_frequency'),
+        ('date_equipment_recieved','date_equipment_placed_in_service'),
         'status',
         'introduction_to_service_form',
         'out_of_service_form',
