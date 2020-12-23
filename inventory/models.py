@@ -54,6 +54,8 @@ class Equipment (models.Model):
     model_number = models.CharField(blank=True, null=True, max_length=200, default=None)
     serial_number = models.CharField(blank=True, null=True, max_length=200, default=None)
     condition_as_recieved = models.CharField(blank=True, null=True, max_length=10, default='New', choices=CONDITIONS)
+    date_equipment_recieved = models.DateField(blank=True, null=True)
+    date_equipment_placed_in_service = models.DateField(blank=True, null=True)
     calibration_date = models.DateField(blank=True, null=True)
     due_date = models.DateField(blank=True, null=True)
     calibration_frequency = models.IntegerField(blank=True, null=True, help_text='months')
