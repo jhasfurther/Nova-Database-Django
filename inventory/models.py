@@ -10,6 +10,7 @@ class Equipment (models.Model):
     ('SC','NOVA SoCal'),
     ('ML1', 'Mobile Lab Reno 1'),
     ('SLC','Salt Lake City'),
+    ('RC', 'Ridgecrest'),
 )
 
     EQUIPMENT_TYPES = (
