@@ -11,6 +11,7 @@ class Equipment (models.Model):
     ('ML1', 'Mobile Lab Reno 1'),
     ('SLC','Salt Lake City'),
     ('RC', 'Ridgecrest'),
+    ('BK', 'Bakersfield'),
 )
 
     EQUIPMENT_TYPES = (
